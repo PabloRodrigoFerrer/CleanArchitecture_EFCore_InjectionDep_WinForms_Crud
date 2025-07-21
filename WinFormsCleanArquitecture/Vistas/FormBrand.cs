@@ -1,5 +1,5 @@
 ﻿using ApplicationBusiness;
-using DTOs;
+using Entity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,10 +17,10 @@ namespace WinFormsCleanArquitecture
     public partial class FormBrand : Form
     {
 
-        private IRepository<BrandDto> _repository;
+        private IRepository<Brand> _repository;
         private IServiceProvider _serviceProvider;
 
-        public FormBrand(IRepository<BrandDto> repository, IServiceProvider serviceProvider)
+        public FormBrand(IRepository<Brand> repository, IServiceProvider serviceProvider)
         {
             InitializeComponent();
             _repository = repository;

@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Models.Entidades;
+﻿
+using Microsoft.EntityFrameworkCore;
+using Models;
 
 namespace Data
 {
@@ -11,13 +12,14 @@ namespace Data
 
         }
 
-        public DbSet<Brand> Brands { get; set; }
-
+        public DbSet<BrandModel> Brands { get; set; }
+        public DbSet<BeersModel> Beers { get; set; }
 
         // si el modelo no se llama igual que la tabla usamos on modelcreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Brand>().ToTable("Brands");
+            modelBuilder.Entity<BrandModel>().ToTable("Brands");
+            modelBuilder.Entity<BeersModel>().ToTable("Beers");
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DTOs;
+﻿using Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,14 @@ namespace ApplicationBusiness
 {
     public class EditBrand
     {
-        private readonly IRepository<BrandDto> _repository;
+        private readonly IRepository<Brand> _repository;
 
-        public EditBrand(IRepository<BrandDto> repository)
+        public EditBrand(IRepository<Brand> repository)
         {
             _repository = repository;
         }
 
-        public async Task ExecuteAsync(BrandDto brand) 
+        public async Task ExecuteAsync(Brand brand) 
         { 
             if (string.IsNullOrEmpty(brand.Name)) 
                 MessageBox.Show("El nombre esta incompleto");

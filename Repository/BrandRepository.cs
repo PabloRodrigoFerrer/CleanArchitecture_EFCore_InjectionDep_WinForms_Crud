@@ -1,12 +1,12 @@
 ﻿using ApplicationBusiness;
 using Data;
-using DTOs;
+using Models;
 using Microsoft.EntityFrameworkCore;
-using Models.Entidades;
+using Entity;
 
 namespace Repository
 {
-    public class BrandRepository : IRepository<BrandDto>
+    public class BrandRepository : IRepository<Brand>
     {
         private readonly AppDbContext _dbContext;
 
@@ -15,15 +15,14 @@ namespace Repository
             _dbContext = dbcontext;
         }
 
-        public async Task AddAsync(BrandDto brandDto)
+        public async Task AddAsync(Brand brand)
         {
-            var brand = new Brand()
+            var brandModel = new BrandModel()
             {   
-
-                Name = brandDto.Name
+                Name = brand.Name
             };
 
-            await _dbContext.Brands.AddAsync(brand);
+            await _dbContext.AddAsync(brandModel);
             await _dbContext.SaveChangesAsync();
         }
 
@@ -34,7 +33,7 @@ namespace Repository
             _dbContext.SaveChanges();
         }
 
-        public async Task EditAsync(BrandDto item)
+        public async Task EditAsync(Brand item)
         {
             var model = await _dbContext.Brands.FindAsync(item.Id);
 
@@ -43,20 +42,19 @@ namespace Repository
             _dbContext.Entry(model).State = EntityState.Modified;
             _dbContext.SaveChanges();
         }
-        
 
-        public async Task<IEnumerable<BrandDto>> GetAllAsync()
-         => await _dbContext.Brands.Select(b => new BrandDto
+        public async Task<IEnumerable<Brand>> GetAllAsync()
+         => await _dbContext.Brands.Select(b => new Brand
             {
                 Id = b.Id,
                 Name = b.Name
             }).ToListAsync();
 
-        public async Task<BrandDto> GetByIdAsync(int id)
+        public async Task<Brand> GetByIdAsync(int id)
         {
             var brand = await _dbContext.Brands.FindAsync(id);
 
-            return new BrandDto
+            return new Brand
             {
                 Id = brand.Id,
                 Name = brand.Name

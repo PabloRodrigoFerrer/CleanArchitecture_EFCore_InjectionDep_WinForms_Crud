@@ -1,10 +1,12 @@
 ﻿using ApplicationBusiness;
 using Data;
 using DTOs;
+using Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repository;
+using Views;
 using Views.Vistas;
 
 
@@ -48,12 +50,17 @@ namespace WinFormsCleanArquitecture
             
             services.AddTransient<AddBrand>();
             services.AddTransient<EditBrand>();
-            services.AddTransient<IRepository<BrandDto>, BrandRepository>();
+            services.AddTransient<AddBeer>();
+            services.AddTransient<EditBeer>();
+            services.AddTransient<IRepository<Brand>, BrandRepository>();
+            services.AddTransient<IRepository<Beer>, BeerRepository>();
 
             services.AddTransient<FormMain>();
             services.AddTransient<FormBrand>();
+            services.AddTransient<FormBeer>();
             services.AddTransient<AltaMarca>();
-            
+            services.AddTransient<FormNewEditBeer>();
+
         }
     }
 }

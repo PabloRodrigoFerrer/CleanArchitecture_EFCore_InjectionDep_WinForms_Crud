@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Views;
 
 namespace WinFormsCleanArquitecture
 {
@@ -30,6 +31,10 @@ namespace WinFormsCleanArquitecture
 
         }
 
-        
+        private void cervezasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = _serviceProvider.GetRequiredService<FormBeer>();
+            form.ShowDialog();
+        }
     }
 }

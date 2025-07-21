@@ -1,18 +1,17 @@
-﻿using DTOs;
-
+﻿using Entity;
 
 namespace ApplicationBusiness
 {
     public class AddBrand
     {
-        private readonly IRepository<BrandDto> _repository;
+        private readonly IRepository<Brand> _repository;
 
-        public AddBrand(IRepository<BrandDto> repository) 
+        public AddBrand(IRepository<Brand> repository) 
         {
             _repository = repository;
         }
 
-        public async Task ExecuteAsync(BrandDto brand)
+        public async Task ExecuteAsync(Brand brand)
         {
             if (string.IsNullOrEmpty(brand.Name)) 
                 MessageBox.Show("El nombre esta incompleto");

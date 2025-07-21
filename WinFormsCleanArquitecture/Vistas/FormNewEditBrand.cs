@@ -1,5 +1,6 @@
 ﻿using ApplicationBusiness;
 using DTOs;
+using Entity;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -44,20 +45,17 @@ namespace Views.Vistas
             this.Close();
         }
 
-
-
-
         private async Task Edit() 
         {
             try
             {
-                var brandEditdto = new BrandDto
+                var brand = new Brand
                 {
                     Id = _id,
                     Name = txtNombreMarca.Text.Trim()
                 };
 
-                await _editeBrand.ExecuteAsync(brandEditdto);
+                await _editeBrand.ExecuteAsync(brand);
 
             }
             catch (Exception ex)
@@ -71,8 +69,8 @@ namespace Views.Vistas
         {
             try
             {
-                var brandDto = new BrandDto { Name = txtNombreMarca.Text.Trim() };
-                await _addBrand.ExecuteAsync(brandDto);
+                var brand = new Brand { Name = txtNombreMarca.Text.Trim() };
+                await _addBrand.ExecuteAsync(brand);
             }
             catch (Exception ex)
             {
@@ -90,12 +88,12 @@ namespace Views.Vistas
             return false;
         }
 
-        public void SetInfo(BrandDto brandDto)
+        public void SetInfo(Brand Brand)
         {   
-            _id = brandDto.Id;
+            _id = Brand.Id;
             Text = "Editar Marca";
             btnGuardarAltaMarca.Text = "Editar";
-            txtNombreMarca.Text = brandDto.Name;
+            txtNombreMarca.Text = Brand.Name;
         }
 
     }
