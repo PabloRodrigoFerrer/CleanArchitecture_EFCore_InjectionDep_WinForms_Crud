@@ -1,5 +1,7 @@
 ﻿using ApplicationBusiness;
+using ApplicationBusiness.DTOs;
 using Entity;
+using Repository.AdditionalDataClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +16,13 @@ namespace Views.Vistas
 {
     public partial class FormNewEditBeer : Form
     {
-        private int _idBeer = 0;
-        private readonly AddBeer _addBeer;
-        private readonly EditBeer _editBeer;
+        private readonly AddBeer<BeerAdditionalData> _addBeer;
+        private readonly EditBeer<BeerAdditionalData> _editBeer;
         private readonly IRepository<Brand> _brandRepository;
+        private int _beerId = 0;
 
-        public FormNewEditBeer(AddBeer addBeer , EditBeer editBeer, IRepository<Brand> repository)
+       
+        public FormNewEditBeer(AddBeer<BeerAdditionalData> addBeer, EditBeer<BeerAdditionalData> editBeer, IRepository<Brand> repository)
         {
             InitializeComponent();
             _addBeer = addBeer;
@@ -33,49 +36,54 @@ namespace Views.Vistas
             cboBrands.DataSource = brands;
             cboBrands.DisplayMember = "Name";
             cboBrands.ValueMember = "Id";
-            
+
         }
 
 
         private async void btnGuardarBeer_Click(object sender, EventArgs e)
         {
-            
-            if (_idBeer == 0) 
+
+            if (_beerId == 0)
             {
-                var beer = new Beer
+                var beerDTO = new BeerDTO
                 {
                     Name = txtName.Text,
-                    BrandId = Convert.ToInt32(cboBrands.SelectedValue),
-                    Alcohol = Convert.ToDecimal(txtAlcohol.Text)
+                    IdBrand = Convert.ToInt32(cboBrands.SelectedValue),
+                    Alcohol = Convert.ToDecimal(txtAlcohol.Text),
+                    Description = txtDescripcion.Text.Trim()
                 };
 
-                await _addBeer.ExecuteAsync(beer);
+                await _addBeer.ExecuteAsync(beerDTO);
             }
-            else if (_idBeer > 0)
+            else if (_beerId > 0)
             {
-                await _editBeer.ExecuteAsync(new Beer
+                await _editBeer.ExecuteAsync(new BeerDTO
                 {
-                    Id = _idBeer,
+                    Id = _beerId,
                     Name = txtName.Text,
-                    BrandId = Convert.ToInt32(cboBrands.SelectedValue),
-                    Alcohol = Convert.ToDecimal(txtAlcohol.Text)
+                    IdBrand = Convert.ToInt32(cboBrands.SelectedValue),
+                    Alcohol = Convert.ToDecimal(txtAlcohol.Text),
+                    Description = txtDescripcion.Text.Trim()
                 });
             }
-         
-            this.Close();           
+
+            this.Close();
+        }
+
+
+        public void SetInfo(BeerDTO beerDto)
+        {
+            _beerId = beerDto.Id;
+            txtName.Text = beerDto.Name;
+            cboBrands.SelectedValue = beerDto.IdBrand;
+            txtAlcohol.Text = beerDto.Alcohol.ToString();
+            txtDescripcion.Text = beerDto.Description;
+
+            btnGuardarBeer.Text = "Editar";
+            this.Text = "Editar Cerveza";
+
         }
 
       
-        public void SetInfo(Beer beer) 
-        {   
-            _idBeer = beer.Id;
-            txtName.Text = beer.Name;
-            cboBrands.SelectedValue = beer.BrandId;
-            txtAlcohol.Text = beer.Alcohol.ToString();
-            btnGuardarBeer.Text = "Editar";
-            this.Text = "Editar Cerveza";
-        }
-        
-
     }
 }

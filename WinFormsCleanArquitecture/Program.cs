@@ -1,11 +1,15 @@
 ﻿using ApplicationBusiness;
+using ApplicationBusiness.DTOs;
+using ApplicationBusiness.Mappers;
 using Data;
-using DTOs;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Repository;
+using Repository.AdditionalDataClass;
+using Repository.Mappers;
+using Repository.QueryObjects;
 using Views;
 using Views.Vistas;
 
@@ -50,10 +54,18 @@ namespace WinFormsCleanArquitecture
             
             services.AddTransient<AddBrand>();
             services.AddTransient<EditBrand>();
-            services.AddTransient<AddBeer>();
-            services.AddTransient<EditBeer>();
+            services.AddTransient<AddBeer<BeerAdditionalData>>();
+            services.AddTransient<EditBeer<BeerAdditionalData>>();
+            services.AddTransient<GetBeerById<BeerAdditionalData>>();
+
             services.AddTransient<IRepository<Brand>, BrandRepository>();
-            services.AddTransient<IRepository<Beer>, BeerRepository>();
+            services.AddTransient<IRepositoryAdditionalData<Beer, BeerAdditionalData>, BeerRepository>();
+            services.AddTransient<BeerWithBrandAndQuery>();
+
+            services.AddTransient<IMapper<BeerDTO, Beer>, MapperToBeerEntity>();
+            services.AddTransient<IMapper<BeerDTO, BeerAdditionalData>, MapperToBeerAdditionalData>();
+            services.AddTransient<ISuperMapper<Beer, BeerAdditionalData, BeerDTO>, MapperToBeerDto>();
+
 
             services.AddTransient<FormMain>();
             services.AddTransient<FormBrand>();

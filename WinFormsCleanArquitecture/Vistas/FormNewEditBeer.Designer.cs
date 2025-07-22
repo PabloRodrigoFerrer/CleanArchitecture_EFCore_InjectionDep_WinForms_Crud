@@ -35,6 +35,8 @@
             btnGuardarBeer = new Button();
             txtName = new TextBox();
             txtAlcohol = new TextBox();
+            lblDescripcion = new Label();
+            txtDescripcion = new TextBox();
             SuspendLayout();
             // 
             // cboBrands
@@ -75,7 +77,7 @@
             // 
             // btnGuardarBeer
             // 
-            btnGuardarBeer.Location = new Point(133, 239);
+            btnGuardarBeer.Location = new Point(125, 289);
             btnGuardarBeer.Name = "btnGuardarBeer";
             btnGuardarBeer.Size = new Size(143, 30);
             btnGuardarBeer.TabIndex = 2;
@@ -97,14 +99,32 @@
             txtAlcohol.Size = new Size(219, 23);
             txtAlcohol.TabIndex = 3;
             // 
+            // lblDescripcion
+            // 
+            lblDescripcion.AutoSize = true;
+            lblDescripcion.Location = new Point(28, 226);
+            lblDescripcion.Name = "lblDescripcion";
+            lblDescripcion.Size = new Size(69, 15);
+            lblDescripcion.TabIndex = 1;
+            lblDescripcion.Text = "Descripcion";
+            // 
+            // txtDescripcion
+            // 
+            txtDescripcion.Location = new Point(103, 223);
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(219, 23);
+            txtDescripcion.TabIndex = 3;
+            // 
             // FormNewEditBeer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(395, 361);
+            Controls.Add(txtDescripcion);
             Controls.Add(txtAlcohol);
             Controls.Add(txtName);
             Controls.Add(btnGuardarBeer);
+            Controls.Add(lblDescripcion);
             Controls.Add(lblAlcochol);
             Controls.Add(lblMarca);
             Controls.Add(lblNombre);
@@ -126,5 +146,7 @@
         private Button btnGuardarBeer;
         private TextBox txtName;
         private TextBox txtAlcohol;
+        private Label lblDescripcion;
+        private TextBox txtDescripcion;
     }
 }

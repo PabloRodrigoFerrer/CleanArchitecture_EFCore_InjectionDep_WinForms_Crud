@@ -41,14 +41,14 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(128, 450);
+            panel1.Size = new Size(128, 510);
             panel1.TabIndex = 1;
             // 
             // btnNuevaCerveza
             // 
-            btnNuevaCerveza.Location = new Point(12, 29);
+            btnNuevaCerveza.Location = new Point(12, 33);
             btnNuevaCerveza.Name = "btnNuevaCerveza";
-            btnNuevaCerveza.Size = new Size(98, 36);
+            btnNuevaCerveza.Size = new Size(98, 41);
             btnNuevaCerveza.TabIndex = 2;
             btnNuevaCerveza.Text = "Add Cerveza";
             btnNuevaCerveza.UseVisualStyleBackColor = true;
@@ -68,17 +68,18 @@
             dgv.ReadOnly = true;
             dgv.RowHeadersVisible = false;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.Size = new Size(672, 450);
+            dgv.Size = new Size(672, 510);
             dgv.TabIndex = 2;
             dgv.CellContentClick += dgv_CellContentClick;
             // 
             // FormBeer
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 510);
             Controls.Add(dgv);
             Controls.Add(panel1);
+            Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "FormBeer";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormBeer";

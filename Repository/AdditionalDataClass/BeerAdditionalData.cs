@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repository.AdditionalDataClass
 {
-    public class BeerAdditionalData : 
+    public class BeerAdditionalData
     {
         public string? Description { get; set; }
     }

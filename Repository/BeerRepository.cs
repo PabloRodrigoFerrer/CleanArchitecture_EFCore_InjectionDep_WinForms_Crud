@@ -1,4 +1,5 @@
 ﻿using ApplicationBusiness;
+using ApplicationBusiness.DTOs;
 using Data;
 using Entity;
 using Microsoft.EntityFrameworkCore;
@@ -47,13 +48,14 @@ namespace Repository
             }
         }
 
-        public async Task EditAsync(Beer item)
+        public async Task EditAsync(Beer item, BeerAdditionalData beerAdditionalData)
         {
             var beerModel = await _DbContext.Beers.FindAsync(item.Id);
 
             beerModel.Name = item.Name;
             beerModel.IdBrand = item.BrandId;
             beerModel.Alcohol = item.Alcohol;
+            beerModel.Description = beerAdditionalData.Description;
 
             _DbContext.Entry(beerModel).State = EntityState.Modified;
 
@@ -67,22 +69,30 @@ namespace Repository
                 Id = b.Id,
                 Name = b.Name,
                 BrandId = b.IdBrand,
-                Alcohol = b.Alcohol
+                Alcohol = b.Alcohol,
             }).ToListAsync();
         }
 
-        public async Task<Beer> GetByIdAsync(int id)
+        public async Task<(Beer, BeerAdditionalData)> GetByIdAsync(int id)
         {
             var beerModel = await _DbContext.Beers.FindAsync(id);
-
-            return new Beer
+            
+            var beer =  new Beer
             {
                 Id = beerModel.Id,
                 Name = beerModel.Name,
                 BrandId = beerModel.IdBrand,
                 Alcohol = beerModel.Alcohol
             };
+
+            var beerADT = new BeerAdditionalData
+            {
+                Description = beerModel.Description,
+            };
+
+            return (beer, beerADT);
         }
 
+        
     }   
 }

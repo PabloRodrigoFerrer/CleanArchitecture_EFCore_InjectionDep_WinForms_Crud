@@ -1,6 +1,8 @@
 ﻿using ApplicationBusiness;
 using Entity;
 using Microsoft.Extensions.DependencyInjection;
+using Repository.AdditionalDataClass;
+using Repository.QueryObjects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +19,20 @@ namespace WinFormsCleanArquitecture
     public partial class FormBeer : Form
     {
 
-        private readonly IRepository<Beer> _repository;
+        private readonly IRepositoryAdditionalData<Beer, BeerAdditionalData> _repository;
         private readonly IServiceProvider _serviceProvider;
+        private readonly GetBeerById<BeerAdditionalData> _getBeerById;
+        private readonly BeerWithBrandAndQuery _beerWithBrandAndQuery;
 
-        public FormBeer(IRepository<Beer> repository, IServiceProvider serviceProvider)
+        public FormBeer(IRepositoryAdditionalData<Beer, BeerAdditionalData> repository, IServiceProvider serviceProvider,
+            GetBeerById<BeerAdditionalData> getBeerById,
+            BeerWithBrandAndQuery beerWithBrandAndQuery)
         {
             InitializeComponent();
             _serviceProvider = serviceProvider;
             _repository = repository;
+            _getBeerById = getBeerById;
+            _beerWithBrandAndQuery = beerWithBrandAndQuery;
         }
 
         private async void FormBeer_Load(object sender, EventArgs e)
@@ -36,7 +44,7 @@ namespace WinFormsCleanArquitecture
 
         private async Task Refresh()
         {
-            var beers = await _repository.GetAllAsync();
+            var beers = await _beerWithBrandAndQuery.GetAllAsync();
             dgv.DataSource = beers;
         }
 
@@ -82,9 +90,9 @@ namespace WinFormsCleanArquitecture
                     break;
                 case "btnDgvEditar":
 
-                    var beer = await _repository.GetByIdAsync(id);
+                    var beerDTO = await _getBeerById.ExecuteAsync(id);
                     var form = _serviceProvider.GetRequiredService<FormNewEditBeer>();
-                    form.SetInfo(beer);
+                    form.SetInfo(beerDTO);
                     form.ShowDialog();
                     await Refresh();
                     break;
