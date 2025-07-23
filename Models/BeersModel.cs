@@ -17,5 +17,7 @@ namespace Models
 
         public string? Description { get; set; }
 
+        public decimal Precio { get; set; }
+
     }
 }

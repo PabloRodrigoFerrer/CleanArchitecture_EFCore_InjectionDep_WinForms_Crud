@@ -37,6 +37,9 @@
             txtAlcohol = new TextBox();
             lblDescripcion = new Label();
             txtDescripcion = new TextBox();
+            lblPrecio = new Label();
+            npdPrecio = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)npdPrecio).BeginInit();
             SuspendLayout();
             // 
             // cboBrands
@@ -77,7 +80,7 @@
             // 
             // btnGuardarBeer
             // 
-            btnGuardarBeer.Location = new Point(125, 289);
+            btnGuardarBeer.Location = new Point(137, 339);
             btnGuardarBeer.Name = "btnGuardarBeer";
             btnGuardarBeer.Size = new Size(143, 30);
             btnGuardarBeer.TabIndex = 2;
@@ -115,15 +118,33 @@
             txtDescripcion.Size = new Size(219, 23);
             txtDescripcion.TabIndex = 3;
             // 
+            // lblPrecio
+            // 
+            lblPrecio.AutoSize = true;
+            lblPrecio.Location = new Point(57, 279);
+            lblPrecio.Name = "lblPrecio";
+            lblPrecio.Size = new Size(40, 15);
+            lblPrecio.TabIndex = 1;
+            lblPrecio.Text = "Precio";
+            // 
+            // npdPrecio
+            // 
+            npdPrecio.Location = new Point(112, 277);
+            npdPrecio.Name = "npdPrecio";
+            npdPrecio.Size = new Size(210, 23);
+            npdPrecio.TabIndex = 4;
+            // 
             // FormNewEditBeer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(395, 361);
+            ClientSize = new Size(395, 428);
+            Controls.Add(npdPrecio);
             Controls.Add(txtDescripcion);
             Controls.Add(txtAlcohol);
             Controls.Add(txtName);
             Controls.Add(btnGuardarBeer);
+            Controls.Add(lblPrecio);
             Controls.Add(lblDescripcion);
             Controls.Add(lblAlcochol);
             Controls.Add(lblMarca);
@@ -133,6 +154,7 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "FormNewEditBeer";
             Load += FormNewEditBeer_Load;
+            ((System.ComponentModel.ISupportInitialize)npdPrecio).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,5 +170,7 @@
         private TextBox txtAlcohol;
         private Label lblDescripcion;
         private TextBox txtDescripcion;
+        private Label lblPrecio;
+        private NumericUpDown npdPrecio;
     }
 }

@@ -17,7 +17,8 @@ namespace ApplicationBusiness.Mappers
                 Id = input.Id,
                 Name = input.Name,
                 BrandId = input.IdBrand,
-                Alcohol = input.Alcohol
+                Alcohol = input.Alcohol,
+                Precio = input.Precio
             };
         }
     }

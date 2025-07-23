@@ -36,13 +36,10 @@ namespace Views.Vistas
             cboBrands.DataSource = brands;
             cboBrands.DisplayMember = "Name";
             cboBrands.ValueMember = "Id";
-
         }
-
 
         private async void btnGuardarBeer_Click(object sender, EventArgs e)
         {
-
             if (_beerId == 0)
             {
                 var beerDTO = new BeerDTO
@@ -50,7 +47,9 @@ namespace Views.Vistas
                     Name = txtName.Text,
                     IdBrand = Convert.ToInt32(cboBrands.SelectedValue),
                     Alcohol = Convert.ToDecimal(txtAlcohol.Text),
-                    Description = txtDescripcion.Text.Trim()
+                    Description = txtDescripcion.Text.Trim(),
+                    Precio = npdPrecio.Value
+
                 };
 
                 await _addBeer.ExecuteAsync(beerDTO);
@@ -63,13 +62,13 @@ namespace Views.Vistas
                     Name = txtName.Text,
                     IdBrand = Convert.ToInt32(cboBrands.SelectedValue),
                     Alcohol = Convert.ToDecimal(txtAlcohol.Text),
-                    Description = txtDescripcion.Text.Trim()
+                    Description = txtDescripcion.Text.Trim(),
+                    Precio = npdPrecio.Value
                 });
             }
 
             this.Close();
         }
-
 
         public void SetInfo(BeerDTO beerDto)
         {
@@ -78,6 +77,7 @@ namespace Views.Vistas
             cboBrands.SelectedValue = beerDto.IdBrand;
             txtAlcohol.Text = beerDto.Alcohol.ToString();
             txtDescripcion.Text = beerDto.Description;
+            npdPrecio.Value = beerDto.Precio;
 
             btnGuardarBeer.Text = "Editar";
             this.Text = "Editar Cerveza";

@@ -46,12 +46,17 @@
             // 
             // btnNuevaCerveza
             // 
+            btnNuevaCerveza.BackColor = Color.DimGray;
+            btnNuevaCerveza.FlatAppearance.BorderColor = Color.Gray;
+            btnNuevaCerveza.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
+            btnNuevaCerveza.FlatStyle = FlatStyle.Flat;
+            btnNuevaCerveza.ForeColor = Color.WhiteSmoke;
             btnNuevaCerveza.Location = new Point(12, 33);
             btnNuevaCerveza.Name = "btnNuevaCerveza";
-            btnNuevaCerveza.Size = new Size(98, 41);
+            btnNuevaCerveza.Size = new Size(110, 63);
             btnNuevaCerveza.TabIndex = 2;
             btnNuevaCerveza.Text = "Add Cerveza";
-            btnNuevaCerveza.UseVisualStyleBackColor = true;
+            btnNuevaCerveza.UseVisualStyleBackColor = false;
             btnNuevaCerveza.Click += btnNuevaCerveza_Click;
             // 
             // dgv

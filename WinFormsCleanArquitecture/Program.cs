@@ -27,6 +27,9 @@ namespace WinFormsCleanArquitecture
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+#pragma warning disable WFO5001 // Este tipo se incluye solo con fines de evaluación y está sujeto a cambios o a que se elimine en próximas actualizaciones. Suprima este diagnóstico para continuar.
+           // Application.SetColorMode(SystemColorMode.Dark);
+#pragma warning restore WFO5001 // Este tipo se incluye solo con fines de evaluación y está sujeto a cambios o a que se elimine en próximas actualizaciones. Suprima este diagnóstico para continuar.
 
 
             var services = new ServiceCollection();
@@ -57,22 +60,25 @@ namespace WinFormsCleanArquitecture
             services.AddTransient<AddBeer<BeerAdditionalData>>();
             services.AddTransient<EditBeer<BeerAdditionalData>>();
             services.AddTransient<GetBeerById<BeerAdditionalData>>();
+            services.AddTransient<CreateSale>();
 
             services.AddTransient<IRepository<Brand>, BrandRepository>();
             services.AddTransient<IRepositoryAdditionalData<Beer, BeerAdditionalData>, BeerRepository>();
             services.AddTransient<BeerWithBrandAndQuery>();
+            services.AddTransient<IRepositorySimple<Sale>, SaleRepository>();
 
             services.AddTransient<IMapper<BeerDTO, Beer>, MapperToBeerEntity>();
+            services.AddTransient<IMapper<SaleDTO, Sale>, MapperToSaleEntity>();
             services.AddTransient<IMapper<BeerDTO, BeerAdditionalData>, MapperToBeerAdditionalData>();
             services.AddTransient<ISuperMapper<Beer, BeerAdditionalData, BeerDTO>, MapperToBeerDto>();
-
+            
 
             services.AddTransient<FormMain>();
             services.AddTransient<FormBrand>();
             services.AddTransient<FormBeer>();
             services.AddTransient<AltaMarca>();
             services.AddTransient<FormNewEditBeer>();
-
+            services.AddTransient<FormNewSale>();
         }
     }
 }

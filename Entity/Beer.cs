@@ -15,6 +15,7 @@ namespace Entity
 
         public decimal Alcohol { get; set; }
 
+        public decimal Precio { get; set; }
         public bool IsStrongBeer() => Alcohol >= 7.5m;
     }
 }

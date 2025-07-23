@@ -16,6 +16,8 @@ namespace ApplicationBusiness.DTOs
 
         public decimal Alcohol { get; set; }
 
+        public decimal Precio { get; set; }
+        
         public string? Description { get; set; }
 
 

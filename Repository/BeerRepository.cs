@@ -31,6 +31,7 @@ namespace Repository
                 IdBrand = item.BrandId,
                 Alcohol = item.Alcohol,
                 Description = beerAdditionalData.Description,
+                Precio = item.Precio
             };
 
             await _DbContext.AddAsync(beerModel);
@@ -56,6 +57,7 @@ namespace Repository
             beerModel.IdBrand = item.BrandId;
             beerModel.Alcohol = item.Alcohol;
             beerModel.Description = beerAdditionalData.Description;
+            beerModel.Precio = item.Precio;
 
             _DbContext.Entry(beerModel).State = EntityState.Modified;
 
@@ -70,6 +72,7 @@ namespace Repository
                 Name = b.Name,
                 BrandId = b.IdBrand,
                 Alcohol = b.Alcohol,
+                Precio = b.Precio,
             }).ToListAsync();
         }
 
@@ -82,7 +85,8 @@ namespace Repository
                 Id = beerModel.Id,
                 Name = beerModel.Name,
                 BrandId = beerModel.IdBrand,
-                Alcohol = beerModel.Alcohol
+                Alcohol = beerModel.Alcohol,
+                Precio = beerModel.Precio,
             };
 
             var beerADT = new BeerAdditionalData

@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Views;
+using Views.Vistas;
 
 namespace WinFormsCleanArquitecture
 {
@@ -34,6 +35,12 @@ namespace WinFormsCleanArquitecture
         private void cervezasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = _serviceProvider.GetRequiredService<FormBeer>();
+            form.ShowDialog();
+        }
+
+        private void nuevaVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = _serviceProvider.GetRequiredService<FormNewSale>();
             form.ShowDialog();
         }
     }
